@@ -1,11 +1,12 @@
 ### BLAS implementation for Erlang, targeted for the GRISP platform.
 
-The goal is to obtain large Matrix*Matrix operations, coded in erlang,
-and relying on NIF Vector*Vector operations.
-The Erlang/NIF interactions shold allow other processus to execute while
+The goal is to obtain large Matrix multiplication operations, coded in erlang,
+and relying on NIF Vector operations.
+The Erlang/NIF interactions should allow other processus to execute while
 the matrices computations are running.
 
-##Early stage: experimentations, nothing really usable now!
+##Early stage
+At this point, I'm just experimenting: nothing is really usable now!
 
 ##Current API
 
