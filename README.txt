@@ -1,6 +1,13 @@
-This is a first homebrew BLAS implementation, based on C.
-Target implementation:
+### BLAS implementation for Erlang, targeted for the GRISP platform.
 
+The goal is to obtain large Matrix*Matrix operations, coded in erlang,
+and relying on NIF Vector*Vector operations.
+The Erlang/NIF interactions shold allow other processus to execute while
+the matrices computations are running.
+
+##Early stage: experimentations, nothing really usable now!
+
+##Current API
 
 NAME            DESCRIPTION  
 vector(L)       Input: L, list of doubles.
@@ -13,15 +20,10 @@ to_list(V)      Input: V, Vector.
 dot(V1, V2)     Input: Vectors.
                 Returns the element-wise product between the two numbers.
 
-DOTO:
-Select functions required to perform higher level 
-vector/matrix multiplication,
-matrix/matrix multiplication.
 
-BLAS source:
-http://www.netlib.org/blas/
 
-Interesting functions, to implement by thursday:
+##Roadmap
+The following functions are expected to be done by 01/10/2020:
 
 Level 1
     xSCAL
@@ -33,4 +35,5 @@ Level 2
 Level 3
     xGEMM
 
-CYA, HAVE FUN
+For reference,
+http://www.netlib.org/blas/
