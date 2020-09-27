@@ -17,10 +17,9 @@ ERL_NIF_TERM atom_vector;
                         |      HELPER FUNCTIONS / STRUCTS       |                                   |
                         -----------------------------------------                                   |
 ----------------------------------------------------------------------------------------------------|                                   
-            LIST MANIP FUNCTIONS       |                                   
+            BASIC WRAPPERS             |                                   
 ----------------------------------------                                   
 */
-
 
 int list_length(ErlNifEnv* env, const ERL_NIF_TERM list, unsigned* length){
     if(!enif_get_list_length(env, list, length)){
@@ -122,6 +121,35 @@ ERL_NIF_TERM to_list(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
     return enif_make_list_from_array(env, list, vector.length);
 }
 
+/* 
+-----------------------------------------
+|            BLAS-LV1                   |
+-----------------------------------------
+*/
+
+/*
+Arguments: 
+    double alpha, Vector x.
+Returns:
+    alpha * x.
+*/
+ERL_NIF_TERM xSCAL(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
+{
+    double alpha;
+    Vector x, res;
+
+    if(term_to_vector(env, argv[1], &x)
+        && enif_get_double(env, argv[0], &alpha)
+        && alloc_vector(x.length, &res)
+        == 0){
+            return enif_make_badarg(env);
+    }
+
+    for(int i=0; i<x.length; i++){
+        res.ptr[i] = x.ptr[i] * alpha;
+    }
+    return vector_to_term(env, res);
+}
 
 ERL_NIF_TERM dot(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
@@ -145,6 +173,7 @@ ErlNifFunc nif_funcs[] = {
     {"init_nif", 0, init},
     {"vector", 1, vector},
     {"to_list", 1, to_list},
+    {"xSCAL", 2, xSCAL},
     {"dot", 2, dot}
 };
 

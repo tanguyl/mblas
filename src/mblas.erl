@@ -1,5 +1,5 @@
 -module(mblas).
--export([vector/1, to_list/1, dot/2]).
+-export([vector/1, to_list/1, xSCAL/2, dot/2]).
 -on_load(init/0).
 
 -record(vector, {length, values}).
@@ -23,6 +23,9 @@ matrix(L) ->
     default().
 
 to_list(V) ->
+    default().
+
+xSCAL(Alpha, V) ->
     default().
 
 dot(V1, V2) ->

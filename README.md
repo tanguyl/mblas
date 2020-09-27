@@ -23,6 +23,11 @@ At this point, I'm just experimenting: nothing is really usable now!
     Input: Vectors.
     Returns the element-wise product between the two numbers.
 
+- xSCAL(Alpha, V)
+    Input: Alpha, double. V, Vector.
+    Returns Alpha * V.
+    Support for stride, size should be added...
+
 
 
 ## Roadmap
